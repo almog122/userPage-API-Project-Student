@@ -9,34 +9,25 @@ class Renderer {
     $(`.${containerName}-container`).append(newHTML);
   }
 
-  renderUserContainer(data) {
-    this.renderTemplate("user" , data)
-  }
-
-  renderQuoteContainer(data) {
-    this.renderTemplate("quote" , data)
-  }
-
-  renderPokemonContainer(data) {
-    this.renderTemplate("pokemon" , data)
-  }
-
-  renderMeatContainer(data) {
-    this.renderTemplate("meat" , data)
-  }
-
-  renderFriendsContainer(data) {
-    this.renderTemplate("friends" , data)
-  }
-
-  main(dataPromise){
+  renderPagePromiseData(dataPromise){
     dataPromise.then((data) => {
-        this.renderUserContainer(data.user)
-        this.renderQuoteContainer(data.quote)
-        this.renderPokemonContainer(data.pokemon)
-        this.renderMeatContainer(data.meat)
-        this.renderFriendsContainer(data.friends)
+      this.renderTemplate("user" , data.user)
+      this.renderTemplate("quote" , data.quote)
+      this.renderTemplate("pokemon" , data.pokemon)
+      this.renderTemplate("meat" , data.meat)
+      this.renderTemplate("friends" , data.friends)
     })
+  }
 
+  renderPageUserData(userData){
+    this.renderTemplate("user" , userData.user)
+    this.renderTemplate("quote" , userData.quote)
+    this.renderTemplate("pokemon" , userData.pokemon)
+    this.renderTemplate("meat" , userData.meat)
+    this.renderTemplate("friends" , userData.friends) 
+  }
+
+  addUserToOptions(userName){
+    $(`.userName-container`).append(`<option value="${userName}"> ${userName} </option>` )
   }
 }

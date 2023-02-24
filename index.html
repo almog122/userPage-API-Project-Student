@@ -27,9 +27,14 @@
             </div>	
         </div>	
         <div class="buttons">	
-            <button id="loadUserData" >Load User Data</button>	
+            <button id="loadUserData">Load User Data</button>	
+            <button id="saveUser">Save User</button>
             <button id="displayUser">Display User</button>	
-        </div>	
+
+            <span>Saved Users:</span>
+            <select name="User-names" class="userName-container"></select>
+        </div>
+        
     </div>
 
 
@@ -50,7 +55,7 @@
 
     <script id="pokemon-template" type="text/x-handlebars-template">
         <img id="pokemon-image" src={{sprites.[front_default]}}>
-        <div id="pokemon-text">Favorite Pokemon : {{name}}</div>
+        <div id="pokemon-text">Favorite Pokemon : {{properPokeName name}}</div>
     </script>
 
 
@@ -69,10 +74,8 @@
         </ul>
     </script>
 
-
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/handlebars/dist/handlebars.js"></script>
     <script src="APIManager.js"></script>
     <script src="Renderer.js"></script>
     <script src="main.js"></script>
