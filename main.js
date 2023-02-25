@@ -1,8 +1,6 @@
 const apiManager = new APIManager();
 const renderer = new Renderer();
 
-const userData = {};
-
 Handlebars.registerHelper("properPokeName", function (pokmeonName) {
   pokmeonName = pokmeonName[0].toUpperCase() + pokmeonName.slice(1);
   return pokmeonName;
@@ -15,18 +13,15 @@ $("#loadUserData").on("click", function () {
 
 $("#saveUser").on("click", function () {
   try {
-    const newUserData = apiManager.getData();
-    const userName = `${newUserData.user.name.first}  ${newUserData.user.name.last}`
-    userData[userName] = newUserData
-    console.log(userData[userName]);
-    console.log(userData);
+    const userData = apiManager.getData();
+    const userName = `${userData.user.name.first}  ${userData.user.name.last}`
+    localStorage[userName] = JSON.stringify(userData);
     renderer.addUserToOptions(userName);
-    localStorage.userData = JSON.stringify(userData);
   } catch {}
 });
 
 $("#displayUser").on("click", function () {
-  const userData = JSON.parse(localStorage.userData);
   const selectedUserName = $(".userName-container").val();
-  renderer.renderPageUserData(userData[selectedUserName]);
+  const userData = JSON.parse(localStorage[selectedUserName]);
+  renderer.renderPageUserData(userData);
 });
